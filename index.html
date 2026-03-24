@@ -1,25 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mulah Assessment</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mulah Assessment</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .upload-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    th {
+      background: #111827;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="card">
+      <h1>Mulah Assessment</h1>
+      <p class="subtitle">Excel table display and processed output</p>
 
-<h2>Table 1</h2>
-<table border="1" id="table1"></table>
+      <div class="upload-row">
+        <input type="file" id="upload" accept=".xlsx,.xls" />
+      </div>
 
-<h2>Table 2</h2>
-<table border="1" id="table2">
-    <tr>
-        <th>Category</th>
-        <th>Value</th>
-    </tr>
-</table>
+      <p class="hint">
+        Upload the provided Excel file to display Table 1 and generate Table 2.
+      </p>
+    </div>
 
-<input type="file" id="upload" />
+    <div class="card">
+      <h2>Table 1</h2>
+      <div class="table-wrapper">
+        <table id="table1"></table>
+      </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-<script src="script.js"></script>
+    <div class="card">
+      <h2>Table 2</h2>
+      <div class="table-wrapper">
+        <table id="table2">
+          <tr>
+            <th>Category</th>
+            <th>Value</th>
+          </tr>
+        </table>
+      </div>
+    </div>
 
+    <p class="footer-note">Built with HTML, JavaScript, and SheetJS</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
