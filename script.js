@@ -1,12 +1,16 @@
 document.getElementById("upload").addEventListener("change", handleFile);
 
+window.onload = function () {
+    loadDefaultFile();
+};
+
 function handleFile(e) {
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
 
-    reader.onload = function(event) {
+    reader.onload = function (event) {
         const data = new Uint8Array(event.target.result);
         const workbook = XLSX.read(data, { type: "array" });
 
@@ -18,6 +22,22 @@ function handleFile(e) {
     };
 
     reader.readAsArrayBuffer(file);
+}
+
+async function loadDefaultFile() {
+    try {
+        const response = await fetch("Table_Input.xlsx");
+        const data = await response.arrayBuffer();
+
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        displayTable1(json);
+        processTable2(json);
+    } catch (error) {
+        console.error("Error loading default file:", error);
+    }
 }
 
 function displayTable1(data) {
@@ -40,7 +60,6 @@ function displayTable1(data) {
 function processTable2(data) {
     const values = {};
 
-    // Skip header row, start from row 1
     for (let i = 1; i < data.length; i++) {
         const index = data[i][0];
         const value = Number(data[i][1]);
